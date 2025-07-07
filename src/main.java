@@ -25,6 +25,7 @@ public class Main {
             System.out.print("Enter your choice (1-8): ");
 
             // Get user input
+            // when the user input is not an integer
             while (!scanner.hasNextInt()) {
                 System.out.print("Invalid input. Enter a number (1-8): ");
                 scanner.next();
@@ -39,7 +40,7 @@ public class Main {
                     ExpenditureManager.addExpenditure(scanner);
                     break;
                 case 2:
-                    System.out.println(">> View All Expenditures module called...");
+                    ExpenditureManager.viewAllExpenditures();
                     break;
                 case 3:
                     System.out.println(">> Search Expenditures module called...");

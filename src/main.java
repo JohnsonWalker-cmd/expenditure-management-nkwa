@@ -2,10 +2,15 @@
 import java.util.Scanner;
 
 import expenditures.ExpenditureManager;
+import categories.CategoryManager;
+import searchsort.SearchSortEngine;
+
+
 
 public class Main {
-
+    
     public static void main(String[] args) {
+        CategoryManager.loadCategoriesFromFile();
         Scanner scanner = new Scanner(System.in);
         int choice;
 
@@ -43,10 +48,47 @@ public class Main {
                     ExpenditureManager.viewAllExpenditures();
                     break;
                 case 3:
-                    System.out.println(">> Search Expenditures module called...");
+                    System.out.println("\n--- Search Expenditures ---");
+                    System.out.println("1. Search by Category");
+                    System.out.println("2. Search by Date Range");
+                    System.out.println("3. Search by Amount Range");
+                    System.out.println("4. Search by Bank Account");
+                    System.out.print("Choose option: ");
+                    int searchChoice = scanner.nextInt();
+                    scanner.nextLine(); // flush newline
+
+                    switch (searchChoice) {
+                        case 1:
+                            SearchSortEngine.searchByCategory(scanner);
+                            break;
+                        case 2:
+                            //SearchSortEngine.searchByDateRange(scanner);
+                            break;
+                        case 3:
+                            //SearchSortEngine.searchByAmountRange(scanner);
+                            break;
+                        case 4:
+                            //SearchSortEngine.searchByBankAccount(scanner);
+                            break;
+                        default:
+                            System.out.println("Invalid search option.");
+                    }
                     break;
                 case 4:
-                    System.out.println(">> Manage Categories module called...");
+                    System.out.println("\n--- Manage Categories ---");
+                    System.out.println("1. Add Category");
+                    System.out.println("2. View All Categories");
+                    System.out.print("Choose option: ");
+                    int subChoice = scanner.nextInt();
+                    scanner.nextLine(); // flush newline
+
+                    if (subChoice == 1) {
+                        CategoryManager.addCategory(scanner);
+                    } else if (subChoice == 2) {
+                        CategoryManager.viewCategories();
+                    } else {
+                        System.out.println("Invalid category option.");
+                    }
                     break;
                 case 5:
                     System.out.println(">> Bank Account Overview module called...");

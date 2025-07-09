@@ -39,7 +39,13 @@ public class ExpenditureManager {
     System.out.print("Bank Account ID: ");
     String bankId = scanner.nextLine();
 
-    String entry = code + " | " + amount + " | " + date + " | " + phase + " | " + category + " | " + bankId;
+    String entry = String.join("|",
+        code.trim(),
+        String.valueOf(amount).trim(),
+        date.trim(),
+        phase.trim(),
+        category.trim(),
+        bankId.trim());
 
     // Store in memory
     expenditureMap.put(code, entry);
@@ -91,5 +97,9 @@ public class ExpenditureManager {
         } catch (IOException e) {
             System.out.println("❌ Failed to load expenditures: " + e.getMessage());
         }
+    }
+    
+    public static Map<String, String> getExpenditureMap() {
+      return expenditureMap;
     }
 }

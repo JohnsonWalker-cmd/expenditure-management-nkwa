@@ -1,4 +1,3 @@
-
 package expenditures;
 
 import java.io.*;
@@ -8,7 +7,7 @@ import java.util.Map;
 
 public class ExpenditureManager {
 
-  private static Map<String, String> expenditureMap = new HashMap<>();
+  private static Map<String, Expenditure> expenditureMap = new HashMap<>();
 
   // Add new expenditure
   public static void addExpenditure(Scanner scanner) {
@@ -39,16 +38,8 @@ public class ExpenditureManager {
     System.out.print("Bank Account ID: ");
     String bankId = scanner.nextLine();
 
-    String entry = String.join("|",
-        code.trim(),
-        String.valueOf(amount).trim(),
-        date.trim(),
-        phase.trim(),
-        category.trim(),
-        bankId.trim());
-
-    // Store in memory
-    expenditureMap.put(code, entry);
+    Expenditure exp = new Expenditure(code, amount, date, phase, category, bankId);
+    expenditureMap.put(code, exp);
 
     // Save to file
     File dir = new File("data");
@@ -59,7 +50,7 @@ public class ExpenditureManager {
     File file = new File("data/expenditures.txt");
 
     try (BufferedWriter writer = new BufferedWriter(new FileWriter(file, true))) {
-      writer.write(entry);
+      writer.write(exp.toFileString());
       writer.newLine();
       System.out.println("✅ Expenditure saved successfully.");
     } catch (IOException e) {
@@ -75,31 +66,42 @@ public class ExpenditureManager {
     }
 
     System.out.println("\n--- All Expenditures ---");
-    for (String entry : expenditureMap.values()) {
-      System.out.println(entry);
+    double total = 0;
+    for (Expenditure exp : expenditureMap.values()) {
+      System.out.println(exp);
+      total += exp.getAmount();
     }
+    System.out.printf("Total Spent: %.2f\n", total);
   }
 
   // Load expenditures from file at program start
   public static void loadExpendituresFromFile() {
-        File file = new File("data/expenditures.txt");
-        if (!file.exists()) return;
+    File file = new File("data/expenditures.txt");
+    if (!file.exists())
+      return;
 
-        try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
-            String line;
-            while ((line = reader.readLine()) != null) {
-              String[] parts = line.split("\\|");
-                if (parts.length >= 1) {
-                    String code = parts[0].trim();
-                    expenditureMap.put(code, line);
-                }
-            }
-        } catch (IOException e) {
-            System.out.println("❌ Failed to load expenditures: " + e.getMessage());
+    try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
+      String line;
+      while ((line = reader.readLine()) != null) {
+        String[] parts = line.split("\\|");
+        if (parts.length == 6) {
+          String code = parts[0].trim();
+          double amount = Double.parseDouble(parts[1].trim());
+          String date = parts[2].trim();
+          String phase = parts[3].trim();
+          String category = parts[4].trim();
+          String bankId = parts[5].trim();
+
+          Expenditure exp = new Expenditure(code, amount, date, phase, category, bankId);
+          expenditureMap.put(code, exp);
         }
+      }
+    } catch (IOException | NumberFormatException e) {
+      System.out.println("❌ Failed to load expenditures: " + e.getMessage());
     }
-    
-    public static Map<String, String> getExpenditureMap() {
-      return expenditureMap;
-    }
+  }
+
+  public static Map<String, Expenditure> getExpenditureMap() {
+    return expenditureMap;
+  }
 }

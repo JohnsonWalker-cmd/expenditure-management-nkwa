@@ -7,7 +7,7 @@ import searchsort.SearchSortEngine;
 
 
 
-public class Main {
+public class expen{
     
     public static void main(String[] args) {
         CategoryManager.loadCategoriesFromFile();
@@ -55,20 +55,20 @@ public class Main {
                     System.out.println("4. Search by Bank Account");
                     System.out.print("Choose option: ");
                     int searchChoice = scanner.nextInt();
-                    scanner.nextLine(); // flush newline
+                    scanner.nextLine(); 
 
                     switch (searchChoice) {
                         case 1:
                             SearchSortEngine.searchByCategory(scanner);
                             break;
                         case 2:
-                            //SearchSortEngine.searchByDateRange(scanner);
+                            SearchSortEngine.searchByDateRange(scanner);
                             break;
                         case 3:
-                            //SearchSortEngine.searchByAmountRange(scanner);
+                            SearchSortEngine.searchByAmountRange(scanner);
                             break;
                         case 4:
-                            //SearchSortEngine.searchByBankAccount(scanner);
+                            SearchSortEngine.searchByBankAccount(scanner);
                             break;
                         default:
                             System.out.println("Invalid search option.");

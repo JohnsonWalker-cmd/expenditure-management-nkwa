@@ -3,3 +3,5 @@ EXP001 |1200.0 |2025-06-07 |sales |cement |AC02
 EXP001 | 1200.0 | 2025-06-07 | sales | cement | ACC01
 EXP002 | 300.0 | 2025-08-06 | sales | cement | AC01
 EXP001|2000.0|2025-06-23|sales|Printing|100
+EXP001|1200.0|2025-06-07|sales|cement|AC01
+2002|1200.0|2026-07-07|sales|cement|120

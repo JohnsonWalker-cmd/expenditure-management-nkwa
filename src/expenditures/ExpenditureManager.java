@@ -37,9 +37,17 @@ public class ExpenditureManager {
 
     System.out.print("Bank Account ID: ");
     String bankId = scanner.nextLine();
+    boolean success = bank.BankAccountManager.deductFromAccount(bankId, amount);
+    if (!success) {
+      System.out.println("Insufficient funds or invalid bank account. Expenditure not recorded.");
+      return;
+    }
 
     Expenditure exp = new Expenditure(code, amount, date, phase, category, bankId);
     expenditureMap.put(code, exp);
+
+    // Link the expenditure to the bank
+    bank.BankAccountManager.linkExpenditure(bankId, code);
 
     // Save to file
     File dir = new File("data");

@@ -11,6 +11,9 @@ public class expen{
     
     public static void main(String[] args) {
         CategoryManager.loadCategoriesFromFile();
+        ExpenditureManager.loadExpendituresFromFile();
+        bank.BankAccountManager.loadFromFile(); 
+        receipts.ReceiptManager.loadReceiptsFromFile();
         Scanner scanner = new Scanner(System.in);
         int choice;
 
@@ -91,10 +94,47 @@ public class expen{
                     }
                     break;
                 case 5:
-                    System.out.println(">> Bank Account Overview module called...");
+                    System.out.println("\n--- Bank Account Management ---");
+                    System.out.println("1. Add Bank Account");
+                    System.out.println("2. View All Bank Accounts");
+                    System.out.print("Choose option: ");
+                    int bankChoice = scanner.nextInt();
+                    scanner.nextLine(); // flush newline
+
+                    if (bankChoice == 1) {
+                        bank.BankAccountManager.addBankAccount(scanner);
+                    } else if (bankChoice == 2) {
+                        bank.BankAccountManager.viewAllBankAccounts();
+                    } else {
+                        System.out.println("Invalid option.");
+                    }
                     break;
                 case 6:
-                    System.out.println(">> Upload/View Receipts module called...");
+                    System.out.println("\n--- Receipt Handling ---");
+                    System.out.println("1. Upload New Receipt");
+                    System.out.println("2. View All Uploaded Receipts");
+                    System.out.println("3. Process Next Receipt (Queue)");
+                    System.out.println("4. Review Most Recent Receipt (Stack)");
+                    System.out.print("Choose option: ");
+                    int receiptChoice = scanner.nextInt();
+                    scanner.nextLine(); 
+
+                    switch (receiptChoice) {
+                        case 1:
+                            receipts.ReceiptManager.uploadReceipt(scanner);
+                            break;
+                        case 2:
+                            receipts.ReceiptManager.viewAllReceipts();
+                            break;
+                        case 3:
+                            receipts.ReceiptManager.processNextUpload();
+                            break;
+                        case 4:
+                            receipts.ReceiptManager.reviewLatestReceipt();
+                            break;
+                        default:
+                            System.out.println("Invalid receipt option.");
+                    }
                     break;
                 case 7:
                     System.out.println(">> Generate Reports module called...");

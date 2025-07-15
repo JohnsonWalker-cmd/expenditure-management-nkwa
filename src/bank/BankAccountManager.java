@@ -65,7 +65,7 @@ public class BankAccountManager {
 
     System.out.print("Enter Initial Balance: ");
     double balance = scanner.nextDouble();
-    scanner.nextLine(); // flush newline
+    scanner.nextLine(); 
 
     BankAccount account = new BankAccount(id, name, balance);
     accountMap.put(id, account);
@@ -114,4 +114,35 @@ public class BankAccountManager {
   public static Map<String, BankAccount> getAllAccounts() {
     return accountMap;
   }
+
+  // 🔻 Show accounts with low balances using a Min-Heap
+  public static void showLowBalanceAccounts() {
+    if (accountMap.isEmpty()) {
+      System.out.println("No bank accounts available.");
+      return;
+    }
+
+    // Create a min-heap sorted by account balance
+    PriorityQueue<BankAccount> minHeap = new PriorityQueue<>(Comparator.comparingDouble(BankAccount::getBalance));
+    minHeap.addAll(accountMap.values());
+
+    System.out.println("\n--- Bank Accounts with Lowest Balances ---");
+
+    int shown = 0;
+    while (!minHeap.isEmpty() && shown < 3) { // Show top 3
+      BankAccount account = minHeap.poll();
+      if (account.getBalance() < 1000) { // Show only if balance is low
+        System.out.println(account);
+        System.out.println("-----------------------------");
+        shown++;
+      } else {
+        break; // Stop early if balance is fine
+      }
+    }
+
+    if (shown == 0) {
+      System.out.println("All accounts have healthy balances.");
+    }
+  }
+
 }

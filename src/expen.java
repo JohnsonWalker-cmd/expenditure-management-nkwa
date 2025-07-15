@@ -97,16 +97,19 @@ public class expen{
                     System.out.println("\n--- Bank Account Management ---");
                     System.out.println("1. Add Bank Account");
                     System.out.println("2. View All Bank Accounts");
+                    System.out.println("3. Show accounts with low balance");
                     System.out.print("Choose option: ");
                     int bankChoice = scanner.nextInt();
-                    scanner.nextLine(); // flush newline
+                    scanner.nextLine();
 
                     if (bankChoice == 1) {
                         bank.BankAccountManager.addBankAccount(scanner);
                     } else if (bankChoice == 2) {
                         bank.BankAccountManager.viewAllBankAccounts();
+                    } else if (bankChoice == 3){
+                        bank.BankAccountManager.showLowBalanceAccounts();
                     } else {
-                        System.out.println("Invalid option.");
+                        System.out.println("Invalid option");
                     }
                     break;
                 case 6:

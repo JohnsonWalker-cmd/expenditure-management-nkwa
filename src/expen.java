@@ -44,7 +44,6 @@ public class expen{
             switch (choice) {
                 case 1:
                     System.out.println(">> Add Expenditure module called...");
-                    // Call ExpenditureManager.addExpenditure() here
                     ExpenditureManager.addExpenditure(scanner);
                     break;
                 case 2:

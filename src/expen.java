@@ -157,7 +157,28 @@ public class expen{
                     }
                     break;
                 case 8:
-                    System.out.println(">> Generate Reports module called...");
+                    System.out.println("\n--- Generate Reports ---");
+                    System.out.println("1. Monthly Burn Rate");
+                    System.out.println("2. Expenditure by Phase");
+                    System.out.println("3. Material Cost Impact");
+                    System.out.print("Choose option: ");
+                    int reportChoice = scanner.nextInt();
+                    scanner.nextLine();
+
+                    switch (reportChoice) {
+                        case 1:
+                            reports.ReportsEngine.showMonthlyBurnRate();
+                            break;
+                        case 2:
+                            reports.ReportsEngine.showExpenditureByPhase();
+                            break;
+                        case 3:
+                            reports.ReportsEngine.showMaterialImpactAnalysis();
+                            break;
+                        default:
+                            System.out.println("Invalid report option.");
+                    }
+
                     break;
                 case 9:
                     System.out.println("Exiting the program. Goodbye!");

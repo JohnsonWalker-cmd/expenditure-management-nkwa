@@ -1,1 +1,9 @@
-EXP001|500.0|2025-07-12|Construction|Cement|B001
+EXP001|800.0|2025-05-10|Construction|Cement|B001
+EXP002|300.0|2025-05-20|Construction|Paint|B001
+EXP003|500.0|2025-06-02|Marketing|TV Adverts|B002
+EXP004|200.0|2025-06-15|Marketing|Printing|B002
+EXP005|650.0|2025-07-05|Construction|Electricals|B001
+EXP006|400.0|2025-07-15|Construction|Cement|B001
+EXP007|250.0|2025-07-25|Sales|Transport|B002
+EXP008|120.0|2025-06-08|Sales|Printing|B002
+EXP009|900.0|2025-05-25|Construction|Labor|B001

@@ -78,6 +78,23 @@ public class expen{
                     }
                     break;
                 case 4:
+                    System.out.println("\n--- Sort Expenditures ---");
+                    System.out.println("1. By Category (A–Z)");
+                    System.out.println("2. By Date (Oldest to Newest)");
+                    System.out.print("Choose option: ");
+                    int sortChoice = scanner.nextInt();
+                    scanner.nextLine(); 
+
+                    if (sortChoice == 1) {
+                        SearchSortEngine.sortByCategory();
+                    } else if (sortChoice == 2) {
+                        SearchSortEngine.sortByDate();
+                    } else {
+                        System.out.println("Invalid sort option.");
+                    }
+                    break;
+
+                case 5:
                     System.out.println("\n--- Manage Categories ---");
                     System.out.println("1. Add Category");
                     System.out.println("2. View All Categories");
@@ -93,7 +110,7 @@ public class expen{
                         System.out.println("Invalid category option.");
                     }
                     break;
-                case 5:
+                case 6:
                     System.out.println("\n--- Bank Account Management ---");
                     System.out.println("1. Add Bank Account");
                     System.out.println("2. View All Bank Accounts");
@@ -112,7 +129,7 @@ public class expen{
                         System.out.println("Invalid option");
                     }
                     break;
-                case 6:
+                case 7:
                     System.out.println("\n--- Receipt Handling ---");
                     System.out.println("1. Upload New Receipt");
                     System.out.println("2. View All Uploaded Receipts");
@@ -139,17 +156,17 @@ public class expen{
                             System.out.println("Invalid receipt option.");
                     }
                     break;
-                case 7:
+                case 8:
                     System.out.println(">> Generate Reports module called...");
                     break;
-                case 8:
+                case 9:
                     System.out.println("Exiting the program. Goodbye!");
                     break;
                 default:
                     System.out.println("Invalid choice. Please choose between 1 and 8.");
             }
 
-            System.out.println(); // Add a blank line between cycles
+            System.out.println();
 
         } while (choice != 8);
 

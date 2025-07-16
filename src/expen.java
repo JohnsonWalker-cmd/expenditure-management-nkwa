@@ -25,12 +25,13 @@ public class expen{
             System.out.println("1. Add Expenditure");
             System.out.println("2. View All Expenditures");
             System.out.println("3. Search Expenditures");
-            System.out.println("4. Manage Categories");
-            System.out.println("5. Bank Account Overview");
-            System.out.println("6. Upload/View Receipts");
-            System.out.println("7. Generate Reports");
-            System.out.println("8. Exit");
-            System.out.print("Enter your choice (1-8): ");
+            System.out.println("4. Sort Expenditures");
+            System.out.println("5. Manage Categories");
+            System.out.println("6. Bank Account Overview");
+            System.out.println("7. Upload/View Receipts");
+            System.out.println("8. Generate Reports");
+            System.out.println("9. Exit");
+            System.out.print("Enter your choice (1-9): ");
 
             // Get user input
             // when the user input is not an integer

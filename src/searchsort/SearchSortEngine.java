@@ -99,4 +99,43 @@ public class SearchSortEngine {
       System.out.println("Invalid date format. Please use YYYY-MM-DD.");
     }
   }
+
+  // 🔠 Sort by Category (alphabetical)
+  public static void sortByCategory() {
+    List<Expenditure> list = new ArrayList<>(ExpenditureManager.getExpenditureMap().values());
+
+    if (list.isEmpty()) {
+      System.out.println("No expenditures available to sort.");
+      return;
+    }
+
+    list.sort(Comparator.comparing(Expenditure::getCategory, String.CASE_INSENSITIVE_ORDER));
+
+    System.out.println("\n--- Expenditures Sorted by Category ---");
+    for (Expenditure exp : list) {
+      System.out.println(exp);
+    }
+  }
+
+  // 📅 Sort by Date (chronological)
+  public static void sortByDate() {
+    List<Expenditure> list = new ArrayList<>(ExpenditureManager.getExpenditureMap().values());
+
+    if (list.isEmpty()) {
+      System.out.println("No expenditures available to sort.");
+      return;
+    }
+
+    try {
+      list.sort(Comparator.comparing(exp -> LocalDate.parse(exp.getDate())));
+    } catch (DateTimeParseException e) {
+      System.out.println("Error parsing one or more dates. Make sure all dates are in YYYY-MM-DD format.");
+      return;
+    }
+
+    System.out.println("\n--- Expenditures Sorted by Date ---");
+    for (Expenditure exp : list) {
+      System.out.println(exp);
+    }
+  }
 }
